@@ -1,3 +1,5 @@
+package by.it_academy.calculator;
+
 import java.util.Scanner;
 
 public class Menu {

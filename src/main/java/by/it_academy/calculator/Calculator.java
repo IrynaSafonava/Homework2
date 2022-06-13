@@ -1,3 +1,5 @@
+package by.it_academy.calculator;
+
 public class Calculator {
 
     public static void calculateResult(char operator, double x, double y) {
