@@ -1,31 +1,20 @@
 package by.it_academy.calculator;
 
-import java.util.Scanner;
-
 public class Menu {
-    public static void startProgramme(Scanner scanner){
+    private InputReader inputReader;
+    private Calculator calculator;
+
+    public Menu(InputReader inputReader, Calculator calculator) {
+        this.inputReader = inputReader;
+        this.calculator = calculator;
+    }
+
+    public void startProgramme() {
         System.out.print("Please, enter X: ");
-        double x = InputReader.getNumber(scanner);
+        double x = inputReader.getNumber();
         System.out.print("Please, enter Y: ");
-        double y = InputReader.getNumber(scanner);
-        char operator = InputReader.getOperator(scanner);
-        Calculator.calculateResult(operator, x, y);
-    }
-    public static int askFurtherAction(Scanner sc) {
-        int action;
-        do {
-            System.out.println("Choose [1] to continue or [0] to exit.");
-            while (!sc.hasNextInt()) {
-                System.out.println("Input is not correct. Positive integer required. " +
-                        "Please choose [1] to continue or [0] to exit");
-                sc.next();
-            }
-            action = sc.nextInt();
-        } while (action != 0 & action != 1);
-        return action;
-    }
-    public static int continueProgramme(Scanner scanner){
-        Menu.startProgramme(scanner);
-        return Menu.askFurtherAction(scanner);
+        double y = inputReader.getNumber();
+        char operator = inputReader.getOperator();
+        calculator.calculateResult(operator, x, y);
     }
 }

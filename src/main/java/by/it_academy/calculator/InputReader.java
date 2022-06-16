@@ -1,9 +1,15 @@
 package by.it_academy.calculator;
 
+import java.util.Objects;
 import java.util.Scanner;
 public class InputReader {
+    private Scanner scanner;
 
-    public static double getNumber(Scanner scanner) {
+    public InputReader(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public double getNumber() {
         double number;
         while (!scanner.hasNextInt() & !scanner.hasNextDouble()) {
             System.out.print("Provided data is invalid, only integer or double with dot accepted! ");
@@ -13,8 +19,8 @@ public class InputReader {
         return number;
     }
 
-    public static char getOperator(Scanner scanner) {
-        System.out.println("To continue, please input +, -, * or /:");
+    public char getOperator() {
+        System.out.println("To continue, please input +, -, * or /: ");
         String operator = scanner.next();
         while (operator.length() > 1) {
             System.out.println("Provided data is invalid or too long");
@@ -26,5 +32,11 @@ public class InputReader {
             }
         }
         return operator.charAt(0);
+    }
+
+    public boolean askFurtherAction() {
+            System.out.println("Choose any to continue or [0] to exit.");
+            String action = scanner.next();
+            return !Objects.equals(action, "0");
     }
 }

@@ -6,19 +6,16 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        InputReader inputReader = new InputReader(scanner);
+        Calculator calculator = new Calculator();
+        Menu menu = new Menu(inputReader, calculator);
 
-        Menu.startProgramme(scanner);
-
-        int action = Menu.askFurtherAction(scanner);
-
-        while (action >= 0) {
-            switch (action) {
-                case 0 -> {
-                    System.out.println("Closing the programme. Bye-Bye!");
-                    scanner.close();
-                    action = -1;
-                }
-                case 1 -> action = Menu.continueProgramme(scanner);
+        while (true) {
+            menu.startProgramme();
+            if (!inputReader.askFurtherAction()) {
+                System.out.println("Closing the programme. Bye-Bye!");
+                scanner.close();
+                break;
             }
         }
     }

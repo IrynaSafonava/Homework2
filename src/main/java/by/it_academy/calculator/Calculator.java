@@ -1,27 +1,29 @@
 package by.it_academy.calculator;
 
+import java.util.Scanner;
+
 public class Calculator {
 
-    public static void calculateResult(char operator, double x, double y) {
+    public void calculateResult(char operator, double x, double y) {
         switch (operator) {
             case '+':
                 System.out.println("The result of summarizing " + x + " and " + y + " is "
-                        + Calculator.toSummarize(x, y));
+                        + toSummarize(x, y));
                 break;
             case '*':
                 System.out.println("The result of multiplication " + x + " by " + y + " is "
-                        + Calculator.toMultiply(x, y));
+                        + toMultiply(x, y));
                 break;
             case '-':
                 System.out.println("The result of subtraction " + y + " from " + x + " is "
-                        + Calculator.toSubtract(x, y));
+                        + toSubtract(x, y));
                 break;
             case '/':
-                if (y == 0) {
-                    System.out.println("You should not divide a number by zero");
-                } else {
+                try {
                     System.out.println("The result of division " + x + " by " + y + " is "
-                            + Calculator.toDivide(x, y));
+                            + toDivide(x, y));
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
                 }
                 break;
             default:
@@ -29,19 +31,22 @@ public class Calculator {
         }
     }
 
-    public static double toSummarize(double x, double y) {
+    public double toSummarize(double x, double y) {
         return x + y;
     }
 
-    public static double toMultiply(double x, double y) {
+    public double toMultiply(double x, double y) {
         return x * y;
     }
 
-    public static double toSubtract(double x, double y) {
+    public double toSubtract(double x, double y) {
         return x - y;
     }
 
-    public static double toDivide(double x, double y) {
+    public double toDivide(double x, double y) {
+        if (y == 0) {
+            throw new IllegalArgumentException("Argument 'divisor' is 0. Not allowed to divide a number by zero");
+        }
         return x / y;
     }
 }
