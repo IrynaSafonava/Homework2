@@ -24,8 +24,14 @@ public class CalculatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"-5, 8, -40", "53.89, 24.11, 1299.2879", "-2147483647, 2, -4.294967294E9"})
+    @CsvSource(value = {"-5, 8, -40", "53.89, 24.11, 1299.2879", "-2147483647, -2, 4.294967294E9"})
     public void testMultiply(double x, double y, double expectedResult) {
+        assertEquals(expectedResult, testSubject.toMultiply(x,y),"Not equal to " + expectedResult);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"-5, 0, 0", "0, -5, 0", "53.89, 0, 0", "-2147483647, 0, 0"})
+    public void testMultiplyByZero(double x, double y, double expectedResult) {
         assertEquals(expectedResult, testSubject.toMultiply(x,y),"Not equal to " + expectedResult);
     }
 

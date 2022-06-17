@@ -1,7 +1,5 @@
 package by.it_academy.calculator;
 
-import java.util.Scanner;
-
 public class Calculator {
 
     public void calculateResult(char operator, double x, double y) {
@@ -36,12 +34,13 @@ public class Calculator {
     }
 
     public double toMultiply(double x, double y) {
+        if(x == 0 | y == 0) {
+            return Math.abs(x * y);
+        }
         return x * y;
     }
 
-    public double toSubtract(double x, double y) {
-        return x - y;
-    }
+    public double toSubtract(double x, double y) { return x - y; }
 
     public double toDivide(double x, double y) {
         if (y == 0) {
